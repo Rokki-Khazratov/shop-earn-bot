@@ -18,5 +18,17 @@ def add_today_stats(message):
         bot.send_message(user_id, "Izvinite, vy ne admin.")
 
 
+
+def process_earnings(message):
+    try:
+        earnings = float(message.text)
+        date = message.date
+        earn_usd = earnings / 10500  
+        db.add_statistics(date, earnings, earn_usd)
+
+        bot.send_message(admin_id, f"Zapis dobavlena v bazу: {date}, UZS: {earnings}, USD: {earn_usd}")
+    except ValueError:
+        bot.send_message(admin_id, "nevernaya summa")
+
 if __name__ == "__main__":
     bot.polling(none_stop=True)
