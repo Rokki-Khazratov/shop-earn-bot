@@ -1,8 +1,10 @@
 import telebot
 from telebot import types
+from database import Database
 from keys import token, admin_id
 
 bot = telebot.TeleBot(token)
+db = Database()
 
 @bot.message_handler(commands=['add_today_stats'])
 def add_today_stats(message):
